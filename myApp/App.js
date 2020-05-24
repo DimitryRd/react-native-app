@@ -1,25 +1,7 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-
-const styles = StyleSheet.create({
-  viewStyle: {
-    backgroundColor: '#30d0fe',
-    height: 116,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    elevation: 2,
-    position: 'relative'
-  },
-  textStyle: {
-    color: 'white',
-    fontSize: 28,
-    fontFamily: 'AvenirNext-Bold',
-    paddingLeft: 22,
-    paddingTop: 71,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 }
-  }
-})
+import { View } from 'react-native'
+import Header from './src/components/uikit/Header'
 
 console.disableYellowBox = true
 export default class App extends Component {
@@ -33,6 +15,8 @@ export default class App extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    console.log('state: ', state)
+    console.log('props: ', props)
     console.log('getDerivedStateFromProps')
   }
 
@@ -42,8 +26,8 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}> {this.state.title} </Text>
+      <View>
+        <Header title={this.state.title} />
       </View>
     )
   }
