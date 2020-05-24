@@ -1,31 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  viewStyle: {
+    backgroundColor: '#30d0fe',
+    height: 116,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'pink'
+    alignItems: 'flex-start',
+    elevation: 2,
+    position: 'relative'
   },
-  welcome: {
-    flex: 1,
-    justifyContent: 'center',
-    fontSize: 20,
-    margin: 10,
-    alignItems: 'center',
-    backgroundColor: 'green'
+  textStyle: {
+    color: 'white',
+    fontSize: 28,
+    fontFamily: 'AvenirNext-Bold',
+    paddingLeft: 22,
+    paddingTop: 71,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 }
   }
 })
 
-const App = () => (
-  <View style={styles.container}>
-    <View style={{ flex: 1, backgroundColor: 'powderblue' }}>
-      <Text style={styles.welcome}> Hello world </Text>
-    </View>
-    <View style={{ flex: 2, backgroundColor: 'steelblue' }} />
-    <View style={{ flex: 3, backgroundColor: 'blue' }} />
-  </View>
-)
+console.disableYellowBox = true
+export default class App extends Component {
+  constructor(props) {
+    super(props)
 
-export default App
+    this.state = {
+      title: 'STAR GATE'
+    }
+    console.log('constructor')
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps')
+  }
+
+  componentDidMount() {
+    console.log('Component did mount')
+  }
+
+  render() {
+    return (
+      <View style={styles.viewStyle}>
+        <Text style={styles.textStyle}> {this.state.title} </Text>
+      </View>
+    )
+  }
+}
