@@ -20,10 +20,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }
   }
 })
-const Header = ({ title }) => (
-  <View style={styles.viewStyle}>
-    <Text style={styles.textStyle}>{title}</Text>
-  </View>
-)
 
-export default Header
+const Header = (props) => {
+  const { viewStyle, textStyle } = styles
+  return (
+    <View style={viewStyle}>
+      <Text style={textStyle}>{props.title}</Text>
+    </View>
+  )
+}
+
+export { Header }
