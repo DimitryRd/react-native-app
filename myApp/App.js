@@ -1,7 +1,20 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import { Header, ImageCard } from './src/components/uikit'
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    flexShrink: 2,
+    justifyContent: 'space-around'
+  },
+  header: {
+    fontSize: 22
+  }
+})
 
 console.disableYellowBox = true
 const url = 'https://gitlab.com/gHashTag/react-native-init/raw/master/db.json'
@@ -11,31 +24,31 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      title: 'STAR GATE'
-    }
-  }
-
-  componentDidMount = async () => {
-    try {
-      const response = await fetch(url, {
-        method: 'GET'
-      })
-      const data = await response.json()
-      console.log('data: ', data)
-      this.setState({ data })
-    } catch (e) {
-      console.warn('e', e) // eslint-disable-line
-      throw e
+      title: 'STAR GATE',
+      data: []
     }
   }
 
   render() {
     const { title, data } = this.state
+    const { container } = styles
     return (
       <View>
-        <Header title={title} />
-        <ImageCard />
+        <Header style={styles.header} title={title} />
+        <ScrollView>
+          <View style={container}>
+            {data.map((item) => (
+              <ImageCard data={item} key={item.id} />
+            ))}
+          </View>
+        </ScrollView>
       </View>
     )
+  }
+
+  componentDidMount = async () => {
+    const response = await fetch(url)
+    const data = await response.json()
+    this.setState({ data })
   }
 }

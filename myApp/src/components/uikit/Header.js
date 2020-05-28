@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
 
 const styles = StyleSheet.create({
   viewStyle: {
@@ -24,9 +24,11 @@ const styles = StyleSheet.create({
 const Header = (props) => {
   const { viewStyle, textStyle } = styles
   return (
-    <View style={viewStyle}>
-      <Text style={textStyle}>{props.title}</Text>
-    </View>
+    <SafeAreaView style={{ backgroundColor: 'gold' }}>
+      <View style={viewStyle}>
+        <Text style={textStyle}>{props.title}</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 
